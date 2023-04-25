@@ -1,38 +1,16 @@
 import "./App.css";
-import Wave from "./components/Wave";
-import Button from "./components/Button";
-import { useState } from "react";
+import ToggleButton from "./components/ToggleButton";
 
 function App() {
-  const [wave, setWave] = useState(false);
-  const [waveTwo, setWaveTwo] = useState(!wave);
-  const [invert, setInvert] = useState(false);
-
-  const handleWave = () => {
-    setWave(!wave);
-  };
-
-  const handleSecondWave = () => {
-    setWaveTwo(!waveTwo);
-  };
-  const handleInvert = () => {
-    setInvert(!invert);
-  };
-
   return (
     <div className='App'>
-      <Wave
-        wave={invert ? !wave : wave}
-        onClick={handleWave}
+      <ToggleButton
+        states={["On", "Off", "Indeterminate"]}
+        defaultState='On'
       />
-      <Wave
-        wave={invert ? !waveTwo : waveTwo}
-        onClick={handleSecondWave}
-      />
-      <Button
-        message={"Invert!"}
-        onClick={handleInvert}
-        status={wave || waveTwo}
+      <ToggleButton
+        states={["On", "Off", "Indeterminate"]}
+        defaultState='Off'
       />
     </div>
   );
