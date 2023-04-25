@@ -1,24 +1,38 @@
 import "./App.css";
+import Wave from "./components/Wave";
+import Button from "./components/Button";
 import { useState } from "react";
-import LikeButton from "./components/LikeButton";
 
 function App() {
-  const [likes, setLikes] = useState<number>(0);
+  const [wave, setWave] = useState(false);
+  const [waveTwo, setWaveTwo] = useState(!wave);
+  const [invert, setInvert] = useState(false);
 
-  const handleLikeClick = () => {
-    setLikes((prevLikes) => prevLikes + 1);
+  const handleWave = () => {
+    setWave(!wave);
+  };
+
+  const handleSecondWave = () => {
+    setWaveTwo(!waveTwo);
+  };
+  const handleInvert = () => {
+    setInvert(!invert);
   };
 
   return (
     <div className='App'>
-      <LikeButton
-        likes={likes}
-        onClick={handleLikeClick}
+      <Wave
+        wave={invert ? !wave : wave}
+        onClick={handleWave}
       />
-      <input
-        type='number'
-        value={likes}
-        onChange={(e) => setLikes(parseInt(e.target.value))}
+      <Wave
+        wave={invert ? !waveTwo : waveTwo}
+        onClick={handleSecondWave}
+      />
+      <Button
+        message={"Invert!"}
+        onClick={handleInvert}
+        status={wave || waveTwo}
       />
     </div>
   );
